@@ -9,4 +9,5 @@ use Modules\Core\Repositories\BaseRepository;
 interface ProductRepository extends BaseRepository
 {
     public function getAll();
+    public function allForNamespace($namespace);
 }
