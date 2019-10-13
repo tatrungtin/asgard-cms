@@ -15,8 +15,10 @@ class CreateProductProductTranslationsTable extends Migration
     {
         Schema::create('product__products', function (Blueprint $table) {
             $table->increments('id');
-            $table->boolean('is_home')->default(0);
-            $table->string('template');
+            $table->string('name')->nullable();
+            $table->string('price')->nullable();
+            $table->string('description')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
         Schema::create('product__product_translations', function (Blueprint $table) {
@@ -27,8 +29,9 @@ class CreateProductProductTranslationsTable extends Migration
             $table->integer('product_id')->unsigned();
             $table->string('locale')->index();
             $table->unique(['product_id', 'locale']);
-            $table->timestamps();
             $table->foreign('product_id')->references('id')->on('product__products')->onDelete('cascade');
+            $table->timestamps();
+
         });
     }
 

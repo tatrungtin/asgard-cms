@@ -7,7 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    protected $table = 'product__products';
     use Translatable;
+    public $translatedAttributes = [
+        'product_id',
+        'name',
+        'description',
+        'status'
+    ];
 
     protected $fillable = [
         'name',
@@ -16,8 +23,6 @@ class Product extends Model
         'image',
         'status'
     ];
-    public $translatedAttributes = ['name', 'description'];
-    protected $table = 'products';
 
 
 }
