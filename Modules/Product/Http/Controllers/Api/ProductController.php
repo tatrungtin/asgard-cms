@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Product\Entities\Product;
 use Modules\Product\Repositories\ProductRepository;
+use Modules\Product\Transformers\ProductTransformer;
 
 class ProductController extends Controller
 {
@@ -23,13 +24,13 @@ class ProductController extends Controller
     {
         $product = $this->product->getAll();
         return response()->json([
-            'result' =>'ok',
-            'data' => $product
+            'result' => 'ok',
+            'data' => ProductTransformer::collection($product)
         ]);
     }
+
     public function store(Request $request)
     {
-
         return response()->json([
             'result' => 'ok',
             'message' => $this->product->create($request->all()),
